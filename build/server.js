@@ -53,13 +53,15 @@ app.post("/talk", function (req, res) {
   _axios2.default.get("https://api.wit.ai/message?v=20190618&q=" + req.body.text, {
     headers: { Authorization: "Bearer " + token }
   }).then(function (response) {
-    console.log(response.data.entities);
-    intent = response.data.entities.intent[0].value;
-    query = response.data.entities.search_query[0].value;
-    console.log(intent);
+    var value = response.data.entities.intent[0].value;
+    console.log(value);
+    var name = response.data.entities.intent[1].value;
+    console.log(name);
     var obj = _data2.default.find(function (o) {
-      return o.name === query;
+      return o.name === name;
     });
+    //console.log(obj[value]);
+
     var messageRepsonse = void 0;
 
     messageRepsonse = JSON.stringify(obj[intent]);
@@ -68,6 +70,7 @@ app.post("/talk", function (req, res) {
     return res.json({ res: "talk" });
   }).catch(function (error) {
     // handle error
+    console.log(error);
     return res.json({ res: "not found" });
   });
 });

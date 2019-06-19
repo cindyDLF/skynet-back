@@ -44,11 +44,13 @@ app.post("/talk", (req, res) => {
       headers: { Authorization: `Bearer ${token}` }
     })
     .then(function(response) {
-      console.log(response.data.entities);
-      intent = response.data.entities.intent[0].value;
-      query = response.data.entities.search_query[0].value;
-      console.log(intent);
-      let obj = data.find(o => o.name === query);
+      const value = response.data.entities.intent[0].value;
+      console.log(value);
+      const name = response.data.entities.intent[1].value;
+      console.log(name);
+      let obj = data.find(o => o.name === name);
+      //console.log(obj[value]);
+
       let messageRepsonse;
 
       messageRepsonse = JSON.stringify(obj[intent]);
@@ -58,6 +60,7 @@ app.post("/talk", (req, res) => {
     })
     .catch(function(error) {
       // handle error
+      console.log(error);
       return res.json({ res: "not found" });
     });
 });
