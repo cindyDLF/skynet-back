@@ -15,6 +15,7 @@ app.get("/", function (req, res) {
 });
 
 app.post("/talk", function (req, res) {
+  console.log(req);
   return res.json({ res: "talk" });
 });
 

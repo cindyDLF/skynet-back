@@ -8,7 +8,8 @@
     "build-babel": "babel -d ./build ./src -s",
     "clean": "rm -rf build && mkdir build",
     "build": "npm run clean && npm run build-babel",
-    "start": "npm run build && node ./build/server.js"
+    "start": "npm run build && node ./build/server.js",
+    "dev": "nodemon --exec babel-node ./src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -16,8 +17,10 @@
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
+    "axios": "^0.19.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1"
   }
 }
